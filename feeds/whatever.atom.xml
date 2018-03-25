@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Houston's Blog - whatever</title><link href="https://hzc989.github.io/" rel="alternate"></link><link href="https://hzc989.github.io/feeds/whatever.atom.xml" rel="self"></link><id>https://hzc989.github.io/</id><updated>2015-01-30T09:20:00+08:00</updated><entry><title>Hello World!</title><link href="https://hzc989.github.io/whatever/my-first-blog.html" rel="alternate"></link><published>2015-01-30T09:20:00+08:00</published><updated>2015-01-30T09:20:00+08:00</updated><author><name>Houston Wong</name></author><id>tag:hzc989.github.io,2015-01-30:/whatever/my-first-blog.html</id><summary type="html">&lt;p&gt;the first article written on my github blog.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Hello World!&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Houston's Blog - whatever</title><link href="https://hzc989.github.io/" rel="alternate"></link><link href="https://hzc989.github.io/feeds/whatever.atom.xml" rel="self"></link><id>https://hzc989.github.io/</id><updated>2018-03-26T00:01:43+08:00</updated><entry><title>"重拾"github page</title><link href="https://hzc989.github.io/whatever/my-second-blog.html" rel="alternate"></link><published>2018-03-26T00:01:43+08:00</published><updated>2018-03-26T00:01:43+08:00</updated><author><name>Houston Wong</name></author><id>tag:hzc989.github.io,2018-03-26:/whatever/my-second-blog.html</id><summary type="html">&lt;p&gt;重新搭建github blog的感悟&lt;/p&gt;</summary><content type="html">&lt;h2&gt;感叹&lt;/h2&gt;
+&lt;p&gt;好久没有写博客了。这次终于下定心水继续搭建我的个人博客，翻开github page的记录才发现，原来这个博客我早在2015年1月就搭了，找了好多篇网文教程，也回忆了好久竟也不知道当时到底是怎么搭起来的了个半成品，也从来没有更新过。&lt;/p&gt;
+&lt;p&gt;2017年计划里同样是定了要自己搭建博客，而今已是2018年03月，感叹自己的执行力差，多少令人唏嘘。&lt;/p&gt;
+&lt;h2&gt;一切推倒从来&lt;/h2&gt;
+&lt;p&gt;Never mind. 万事开头难，然后中间难，最后结尾难...花了一天半的时间才把这个github page的鬼东西推倒重来（本来就从来没有过什么内容- -）。&lt;/p&gt;
+&lt;p&gt;参看网上的一篇&lt;a href="https://blog.csdn.net/heriam/article/details/50633473"&gt;中文教程&lt;/a&gt;尝试着重新搭建，但每每发现&lt;code&gt;make publish&lt;/code&gt;生成站点静态文件时，都总会把&lt;code&gt;output&lt;/code&gt;目录刷一遍，把我里面的&lt;code&gt;.git&lt;/code&gt;目录也删掉了，一直搞不懂文章作者如何做到git push自动化的，直到看到另一篇风格清奇的&lt;a href="https://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html"&gt;英文文章&lt;/a&gt;才知道&lt;code&gt;publishconf.py&lt;/code&gt;文件下面很重要的配置是要自行改的，不然的话生成时就会把整个output目录刷一遍，果然网文导出都是坑，还是实践出真知。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# quick start 默认是True
+DELETE_OUTPUT_DIRECTORY = False
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;本以这篇英文文章就是我的救星，然而我也卡在了git的submodule里面，显然还是知识储备不足的问题了。详细就不说了，可以提提文章作者风格清奇的思路，他是把pelican和github page站点作为两个不同的module，user.github.io这个repo作为submodule指向到pelican里的output目录，每次&lt;code&gt;make publish&lt;/code&gt;生成最新的站点静态文件后，cd 到output目录对submodule进行add,commit,push更新。这种使用方式，似乎是与我理解中的子模块的逆用，最后当然我也没有搞出来放弃了。&lt;/p&gt;
+&lt;p&gt;anyway，最后的解决方案就是先disable掉自动删除&lt;code&gt;output&lt;/code&gt;目录，然后按照上文提到的中文文档来配置就可以了。&lt;/p&gt;
+&lt;h2&gt;接下来要做的事情&lt;/h2&gt;
+&lt;p&gt;鉴于自己的懒惰和记性，这里还是写下这个博客接下来要做的一些事情。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当然第一要务是把我自己写的一些文档更新上去&lt;/li&gt;
+&lt;li&gt;加上pages目录，新增&lt;code&gt;about.md&lt;/code&gt;和&lt;code&gt;contact.md&lt;/code&gt;等模块&lt;/li&gt;
+&lt;li&gt;换个好点的主题&lt;/li&gt;
+&lt;li&gt;了解并加上&lt;code&gt;DISQUS_SITENAME&lt;/code&gt;第三方评论系统&lt;/li&gt;
+&lt;li&gt;了解并加上&lt;code&gt;GOOGLE_ANALYTICS&lt;/code&gt;、Google Webmasters和百度站长收录等等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;先附上一些博客文章吧&lt;/p&gt;
+&lt;p&gt;https://blog.csdn.net/heriam/article/details/50633473
+https://blog.csdn.net/simple_the_best/article/details/52821132&lt;/p&gt;</content></entry><entry><title>Hello World!</title><link href="https://hzc989.github.io/whatever/my-first-blog.html" rel="alternate"></link><published>2015-01-30T09:20:00+08:00</published><updated>2015-01-30T09:20:00+08:00</updated><author><name>Houston Wong</name></author><id>tag:hzc989.github.io,2015-01-30:/whatever/my-first-blog.html</id><summary type="html">&lt;p&gt;the first article written on my github blog.&lt;/p&gt;</summary><content type="html">&lt;h1&gt;Hello World!&lt;/h1&gt;
 &lt;p&gt;Welcome to my blog on &lt;code&gt;Github&lt;/code&gt;.&lt;/p&gt;
 &lt;h1&gt;About me&lt;/h1&gt;
 &lt;p&gt;Chinese Name: 黄子程(HuangZicheng)&lt;/p&gt;

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Houston's Blog - whatever</title>
+    <title>"重拾"github page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Houston Wong">
@@ -84,9 +84,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="https://hzc989.github.io/whatever/my-second-blog.html">"重拾"github page</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to "重拾"github page">
+                                        "重拾"github page
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2018-03-26T00:01:43.831459+08:00">
         <i class="icon-calendar"></i>Mon 26 March 2018
@@ -97,32 +108,35 @@
 <a href="https://hzc989.github.io/whatever/index.html"><i class="icon-folder-open"></i>whatever</a>.
 
 
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>重新搭建github blog的感悟</p>
-                        <a class="btn primary xsmall" href="https://hzc989.github.io/whatever/my-second-blog.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="https://hzc989.github.io/whatever/my-first-blog.html">Hello World!</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2015-01-30T09:20:00+08:00">
-        <i class="icon-calendar"></i>Fri 30 January 2015
-</abbr>
-<span class="label">By</span>
-<a href="https://hzc989.github.io/author/houston-wong.html"><i class="icon-user"></i>Houston Wong</a>
-<span class="label">Category</span>
-<a href="https://hzc989.github.io/whatever/index.html"><i class="icon-folder-open"></i>whatever</a>.
+</footer><!-- /.post-info -->                </div>
+                <h2>感叹</h2>
+<p>好久没有写博客了。这次终于下定心水继续搭建我的个人博客，翻开github page的记录才发现，原来这个博客我早在2015年1月就搭了，找了好多篇网文教程，也回忆了好久竟也不知道当时到底是怎么搭起来的了个半成品，也从来没有更新过。</p>
+<p>2017年计划里同样是定了要自己搭建博客，而今已是2018年03月，感叹自己的执行力差，多少令人唏嘘。</p>
+<h2>一切推倒从来</h2>
+<p>Never mind. 万事开头难，然后中间难，最后结尾难...花了一天半的时间才把这个github page的鬼东西推倒重来（本来就从来没有过什么内容- -）。</p>
+<p>参看网上的一篇<a href="https://blog.csdn.net/heriam/article/details/50633473">中文教程</a>尝试着重新搭建，但每每发现<code>make publish</code>生成站点静态文件时，都总会把<code>output</code>目录刷一遍，把我里面的<code>.git</code>目录也删掉了，一直搞不懂文章作者如何做到git push自动化的，直到看到另一篇风格清奇的<a href="https://hernantz.github.io/how-to-publish-a-pelican-site-on-github.html">英文文章</a>才知道<code>publishconf.py</code>文件下面很重要的配置是要自行改的，不然的话生成时就会把整个output目录刷一遍，果然网文导出都是坑，还是实践出真知。</p>
+<div class="highlight"><pre><span></span># quick start 默认是True
+DELETE_OUTPUT_DIRECTORY = False
+</pre></div>
 
 
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>the first article written on my github blog.</p>
-                        <a class="btn primary xsmall" href="https://hzc989.github.io/whatever/my-first-blog.html">more ...</a>
-                </div>
-        </div>
-        <hr />
-
+<p>本以这篇英文文章就是我的救星，然而我也卡在了git的submodule里面，显然还是知识储备不足的问题了。详细就不说了，可以提提文章作者风格清奇的思路，他是把pelican和github page站点作为两个不同的module，user.github.io这个repo作为submodule指向到pelican里的output目录，每次<code>make publish</code>生成最新的站点静态文件后，cd 到output目录对submodule进行add,commit,push更新。这种使用方式，似乎是与我理解中的子模块的逆用，最后当然我也没有搞出来放弃了。</p>
+<p>anyway，最后的解决方案就是先disable掉自动删除<code>output</code>目录，然后按照上文提到的中文文档来配置就可以了。</p>
+<h2>接下来要做的事情</h2>
+<p>鉴于自己的懒惰和记性，这里还是写下这个博客接下来要做的一些事情。</p>
+<ul>
+<li>当然第一要务是把我自己写的一些文档更新上去</li>
+<li>加上pages目录，新增<code>about.md</code>和<code>contact.md</code>等模块</li>
+<li>换个好点的主题</li>
+<li>了解并加上<code>DISQUS_SITENAME</code>第三方评论系统</li>
+<li>了解并加上<code>GOOGLE_ANALYTICS</code>、Google Webmasters和百度站长收录等等</li>
+</ul>
+<p>先附上一些博客文章吧</p>
+<p>https://blog.csdn.net/heriam/article/details/50633473
+https://blog.csdn.net/simple_the_best/article/details/52821132</p>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">

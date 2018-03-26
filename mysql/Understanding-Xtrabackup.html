@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hello World!</title>
+    <title>xtrabackup的前世今生</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="Houston Wong">
@@ -64,12 +64,12 @@
           <div class="nav-collapse">
             <ul class="nav">
                           <li class="divider-vertical"></li>
-                  <li >
+                  <li class="active">
                     <a href="https://hzc989.github.io/mysql/index.html">
 						<i class="icon-folder-open icon-large"></i>MySQL
 					</a>
                   </li>
-                  <li class="active">
+                  <li >
                     <a href="https://hzc989.github.io/whatever/index.html">
 						<i class="icon-folder-open icon-large"></i>whatever
 					</a>
@@ -95,8 +95,8 @@
                         <h1>
                                 <a href=""
                                         rel="bookmark"
-                                        title="Permalink to Hello World!">
-                                        Hello World!
+                                        title="Permalink to xtrabackup的前世今生">
+                                        xtrabackup的前世今生
                                 </a>
                         </h1>
                 </header>
@@ -104,23 +104,57 @@
                 <div class="well">
 <footer class="post-info">
 <span class="label">Date</span>
-<abbr class="published" title="2015-01-30T09:20:00+08:00">
-        <i class="icon-calendar"></i>Fri 30 January 2015
+<abbr class="published" title="2018-03-27T00:45:22.878517+08:00">
+        <i class="icon-calendar"></i>Tue 27 March 2018
 </abbr>
 <span class="label">By</span>
 <a href="https://hzc989.github.io/author/houston-wong.html"><i class="icon-user"></i>Houston Wong</a>
 <span class="label">Category</span>
-<a href="https://hzc989.github.io/whatever/index.html"><i class="icon-folder-open"></i>whatever</a>.
+<a href="https://hzc989.github.io/mysql/index.html"><i class="icon-folder-open"></i>MySQL</a>.
 
 
 </footer><!-- /.post-info -->                </div>
-                <h1>Hello World!</h1>
-<p>Welcome to my blog on <code>Github</code>.</p>
-<h1>About me</h1>
-<p>Chinese Name: 黄子程(HuangZicheng)</p>
-<p>English Name: Houston Wong</p>
-<p>Job: DBA@NetEaseGame(Guangzhou)</p>
-<p>hobbies: Swimming, Running, Movies</p>
+                <h2>xtrabackup的前世今生</h2>
+<p>最近利用为平台编写新的每日备份脚本的机会去熟悉了解xtrabackup的前世今世。</p>
+<p>目前平台在用的是Percona Xtrabackup 2.4.9 </p>
+<div class="highlight"><pre><span></span>#xtrabackup --version
+
+xtrabackup version 2.4.9 based on MySQL server 5.7.13 Linux (x86_64) (revision id: a467167cdd4)
+</pre></div>
+
+
+<p>根据网上的一篇关于<a href="http://www.cnblogs.com/billyxp/p/5305676.html">Percona Xtrabackup2.4.1的博客文章</a> 的介绍:</p>
+<blockquote>
+<p>2.4版本的<code>innobackupex</code>脚本用c重写，并且只是<code>xtrabackup</code>的符号连接。<code>innobackupex</code>支持2.2版本所有的特性，但是目前已降级在下个Major版本中移除，<code>innobackupex</code>将不支持所有新特性的语法，同时<code>xtrabackup</code>现在支持<code>MyISAM</code>的拷贝并且支持<code>innobakcupex</code>的所有特性。<code>innobackupex</code>先前特性的语法<code>xtrabackup</code>同样支持</p>
+</blockquote>
+<p>抱着网文不可（全）信的心态和实事求是一贯作风，查遍Percona官网2.2 2.3 2.4版本的官方文档，发现总结如下：</p>
+<ul>
+<li>
+<p>2.2版本的<code>innobackupex</code>是一个Perl封装的脚本，是Percona公司基于Oracle官方提供的InnoDB热备工具<code>innobackup</code>(同样是个Perl脚本）、同时整合<code>xtrabackup</code>和其他一些便利功能得来的“修补版本”。<strong>2.2版本Percona推荐通过innobackupex这个封装脚本来使用xtrabackup的工具</strong></p>
+</li>
+<li>
+<p>2.3版本的<code>innobackupex</code>介绍有矛盾的地方</p>
+<ul>
+<li>
+<p>在<a href="https://www.percona.com/doc/percona-xtrabackup/2.3/manual.html">UserManual</a>中提到此时<code>innobackupex</code>已是<code>xtrabackup</code>的符号链接，其提供的功能和语法如前2.2版本一致，并会在下一版本被移除。<strong>同时Percona推荐在2.3 release版本及以后使用<code>xtrabackup</code>命令来进行执行备份</strong></p>
+</li>
+<li>
+<p>但画风一转，在<a href="www.percona.com/doc/percona-xtrabackup/2.3/innobackupex/innobackupex_script.html">innobackupex脚本具体介绍</a>  中，文档却还是说其是一个Perl封装的脚本，内容介绍与2.2版本链接上的介绍一致。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>2.4的User Manual说明和2.3版本完全一致，看来似乎是大家对<code>Innobackupex</code>爱得深沉啊所以移了两版都移不掉啊。同时此版在<a href="https://www.percona.com/doc/percona-xtrabackup/2.4/innobackupex/innobackupex_script.html">innobackupex脚本具体介绍</a>中同样说明其是<code>xtrabackup</code>的一个符号，“又一次”给出warning：<code>innobackupex</code>已被放弃，请转到xtrabackup。</p>
+</li>
+</ul>
+<h3>总结</h3>
+<p>针对网上文章，其一般体验的都是作者自己的理解，同时还具有一定的时效性，往往越久远的文章越容易失效，可能文章作者的说法已经和现在的实际情况不一致了，还是以官方文档和自己实践理解为准，同时官方文档也不一定完全正确，正如我上文提到的2.3版本说明的前后不一致。</p>
+<p><strong>总之对于我们平台在用的2.4版本，<code>innobackupex</code>已经是一个符号链接无疑啦，小伙伴们还是尽快按照Percona指引所说的放弃使用<code>innobackupex</code>，投入到<code>xtrabackup</code>的怀抱吧。</strong></p>
+<h3>区别与联系</h3>
+<p>尽管我发现<code>innobackupex</code>的man page和<code>xtrabackup</code>的man page略有不同，比如innobackupex的man page提到可以使用选项<code>--kill-long-queries-timeout</code>来解决<code>flush-table-with-read-lock</code>的一些问题，但<code>xtrabackup</code>的man page里面并没有提到这个选项。</p>
+<p>最终通过实际命令实验，确认确如<a href="http://www.cnblogs.com/billyxp/p/5305676.html">Percona Xtrabackup2.4.1的博客文章</a> 介绍所说，使用<code>xtrabackup</code>能支持所有<code>innobackupex</code>的所有特性，<code>innobackupex</code>先前特性的语法<code>xtrabackup</code>同样支持</p>
+<h3>预告</h3>
+<p>没错，我使用xtrabackup目的上面已提到，是为了解决<code>flush-table-with-read-lock</code>的一些问题。在下篇博文中我会具体写如何使用<code>xtrabackup</code>来解决这个问题的。</p>
                 </div><!-- /.entry-content -->
         </article>
 </section>
